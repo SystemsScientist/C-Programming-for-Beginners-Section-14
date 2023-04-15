@@ -37,7 +37,63 @@ Reading Characters from a Text File
 	rewind(pfile);
 
 
-Example
+Reading a String from a Text File
+
+	- you can use the fgets() function to read from any file
+	  or stream
+
+	char *fgets(char *str, int nchars, FILE *stream)
+
+	- the function reads a string into the memory area 
+	  pointed to by str, from the file specified by stream
+
+		+ characters are read until either a '\n' is
+		  read or nchars - 1 characters have been read
+		  from the stream, whichever occurs first
+
+		+ if a newline character is read, it's retained
+		  in the string
+		
+			- a '\0' character will be appended to
+			  the end of the string
+
+		+ if there is no error, fgets() returns the 
+		  pointer, str
+
+		+ if there is an error, NULL is returned
+
+		+ reading EOF causes NULL to be returned
+
+
+Example 2
+
+#inlcude <stdio.h>
+
+int main(void) {
+
+	FILE *fp;
+	char str[60];
+	
+	// open file for reading
+	fp = fopen("test_file2.txt", "r");
+
+	if(fp == NULL) {
+
+		perror("Error opening file.");
+		return -1;
+	}
+
+	if(fgets(str, 60, fp) != NULL) {
+
+		// write content to stdout
+		printf("%s", str);
+	}
+
+	fclose(fp);
+	fp = NULL:
+	return 0;
+}
+
 
 
 
