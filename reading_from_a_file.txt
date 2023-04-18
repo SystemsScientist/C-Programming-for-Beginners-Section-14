@@ -139,7 +139,7 @@ int main(void) {
 
 	rewind(fp);
 
-	fscan(fp, "%s %s %s %d", str1, str2, str3, &year);
+	fscanf(fp, "%s %s %s %d", str1, str2, str3, &year);
 
 	printf("Read str1 |%s|\n", str1);
 	printf("Read str2 |%s|\n", str2);
