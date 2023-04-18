@@ -95,5 +95,61 @@ int main(void) {
 }
 
 
+Reading formatted input from a file
+
+	- you can get formatted input from a file
+	  by using the standard fscanf() function
+
+	int fscan(FILE *stream, const char *format, ...)
+
+	- the first argument to this function is 
+	  the pointer to a FILE object that 
+	  identifies the stream
+
+	- the second argument to this function is
+	  the format
+
+		+ a C string that contains one or
+		  more of the following items
+
+			- whitespace character
+
+			- non-whitespace character
+
+			- format specifiers
+
+			- usage is similar to scanf,
+			  but from a file
+
+	- function returns the number of input items
+	  successfully matched and assigned
+
+
+Example 3
+
+int main(void) {
+
+	char str1[10], str[10], str3[10];
+	int year;
+	FILE *fp;
+
+	fp = fopen("file.txt", "w+");
+	if(fp != NULL)
+		fputs("Hello how are you?", fp);
+
+	rewind(fp);
+
+	fscan(fp, "%s %s %s %d", str1, str2, str3, &year);
+
+	printf("Read str1 |%s|\n", str1);
+	printf("Read str2 |%s|\n", str2);
+	printf("Read str3 |%s|\n", str3);
+	printf("Read int  |%d|\n", year);
+
+	fclose(fp);
+
+	return 0;
+}
+
 
 
