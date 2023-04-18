@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1681815743 source:/home/snarkydata/udemy-courses/C-Courses/C-Programming-For-Beginners/Section-14-File-Input-and-Output/Reading-from-a-File-3/main.c
+	<stdio.h>
+	<stdlib.h>
+
