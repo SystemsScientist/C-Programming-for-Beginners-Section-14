@@ -133,7 +133,7 @@ int main(void) {
 
 	FILE *fp = NULL;
 
-	fp = open("write_file_test3", "w+");
+	fp = fopen("write_file_test3", "w+");
 	
 	if(fp != NULL)
 		fprintf(fp, "%s %s %s %s %d", "Hello", "my", "number", "is", 555);
