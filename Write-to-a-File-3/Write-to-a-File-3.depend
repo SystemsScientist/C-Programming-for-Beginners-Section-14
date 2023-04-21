@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1682075310 source:/home/snarkydata/udemy-courses/C-Courses/C-Programming-For-Beginners/Section-14-File-Input-and-Output/Write-to-a-File-3/main.c
+	<stdio.h>
+	<stdlib.h>
+
