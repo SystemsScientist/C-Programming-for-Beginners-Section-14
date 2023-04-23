@@ -49,7 +49,7 @@ Finding Out Where You Are
 	 	  beginning of the file
 
 
-Example
+Example 1
 
 int main(void) {
 
@@ -73,6 +73,181 @@ int main(void) {
 }
 
 
+fgetpos()
+
+	- the second function providing information on the current
+	  file position is a little more complicated
+
+	- example
+
+		+ int fgetpos(FILE * pfile, fpos_t * position);
+
+	- the first parameter is a file pointer
+
+	- the second parameter is a pointer to a type that is
+	  defined in stdio.h
+
+		+ fpos_t is a type that is able to record every
+		  position within a file
+
+	- the fgetpos() function is designed to be used with the
+	  positioning function fsetpos()
+
+	- the fgetpos() function stores the current position and
+	  file state information for the file in position and
+	  returns 0 if the operation is successful
+	
+		+ returns a nonzero integer value for failure
+
+	- example
+	
+		+ fpos_t here;
+	
+		+ fgetpos(pfile, &here);
+
+	- the above records the current file position in the
+	  variable here
+
+	- you must declare a variable of type fpos_t
+
+		+ cannot declare a pointer of type fpos_t*
+		  because there will not be any memory
+		  allocated to store the position data
+
+
+Example 2
+
+int main(void) {
+
+	FILE *fp;
+	fpos_t position;
+
+	fp = fopen("test_file.txt", "w+");
+	fgetpos(fp, &position);
+	fputs(Hello, World!", fp);
+
+	fclose(fp);
+
+	return 0;
+}
+
+
+Setting a Position in a File
+
+	- as a complement to ftell(), you have the fseek()
+	  function
+
+	- for example
+
+		+ int fseek(FILE * pfile, long offset, in origin);
+
+	- the first parametert is a pointer to the file you 
+	  are repositioning
+
+	- the second and third parameters define where you want 
+	  to go in the file
+
+		+ the second parameter is an offset from a 
+		  reference point specified by the third 
+		  parameter
+
+		+ reference point can be one of three values that
+		  are specified by the predefined names
+
+			- SEEK_SET - defines the beginning of the
+			  file
+
+			- SEEK_CUR - defines the current position
+			  in the file
+
+			- SEEK_END - defines the end of the file
+
+	- for a text mode file, the second argment must be a value
+	  returned by ftell()
+
+	- the third argument for text mode files must be SEEK_SET
+
+		+ for text files, all operations with fseek() are
+		  performed with reference to the beginning of
+		  the file
+
+		+ for binary files, the offset argument is simply
+		  a relative byte count
+
+			- can therefore supply positive or negative
+			  values for the offset when the reference
+			  point is specified as SEEK_CUR
+
+
+Example 3 - (fseek() example)
+
+int main(void) {
+
+	FILE *fp;
+
+	fp = fopen("test_file.txt", "w+");
+	fputs("This is Matthew", fp);
+
+	fseek(fp, 7, SEEK_SET);
+	fputs("Hell0, how are you?", fp);
+	fclose(fp);
+
+	return 0;
+}
+
+
+fsetpos()
+
+	- you have the fsetpos() function to go with fgetpos()
+
+	- for example
+
+		int fsetpos(FILE * pfile, const fpos_t * position);
+
+	- the first parameter is a pointer to the open file
+
+	- the second is a pointer of the fpos_t type
+
+		+ the position that is stored at the address was
+		  obtained by calling fgetpos()
+
+	- for example
+
+		+ fsetpos(pfile, &here);
+
+	- the variable here was previously set by a call to 
+	  fgetpos()
+
+	- the fsetpos() returns a nonzero value on error or 0 
+	  when it succeeds
+
+	- this function is designed to work with a value that is
+	  returned by fgetpos()
+
+		+ you can only use it to get to a place in a file
+		  that you have been before
+
+		+ fseek() allows you to go to any position just
+		  by specifying the appropriate offset
+
+
+Example 4 - (fgetpos() example)
+
+int main(void) {
+
+	FILE *fp;
+	fpos_t position;
+
+	fp = fopen("test_file.txt", "w+");
+	fgetpos(fp, &position;
+	fputs("Hello, World!", fp);
+
+	fsetpos(fp, &position);
+	fputs("This is going to override previous content", fp);
+	fclose(fp);
+
+	return 0;
+}
 
 
 
