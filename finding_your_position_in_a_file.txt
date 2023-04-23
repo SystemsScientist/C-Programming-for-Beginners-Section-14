@@ -1,0 +1,78 @@
+
+Section 14: Finding Your Position in a File
+-----------------------------------------------------------------------------
+
+File POsitioning
+
+	- for many applications, you need to be able to access
+	  data in a file other than sequential order
+
+	- there are various functions that you can use to access
+	  in random sequence
+
+	- there are two aspects to file positioning
+
+		+ finding out where you are in a file
+
+		+ moving to a given point in a file
+
+	- you can access a file at a random position regardless
+	  of whether you opened the file
+
+
+Finding Out Where You Are
+
+	- you have two functions to tell you where you are in a
+	  file
+
+		+ ftell()
+
+		+ fgetpos()
+
+	- example
+
+		+ long ftell(FILE *pfile);
+
+	- this function accpets a file pointer as an argument
+	  and returns a long integer value that specifies the
+	  current position in the file
+
+	- example
+
+		+ long fpos = ftell(pfile);
+
+	- the fpos variable now holds the current position in
+	  the file and you can use this to return to this 
+	  position at any subsequent time
+
+		+ value is the offset in bytes from the
+	 	  beginning of the file
+
+
+Example
+
+int main(void) {
+
+	FILE *fp;
+	int len;
+
+	fp = fopen("file.txt", "r");
+	if (fp == NULL) {
+
+		perror("Error opening file");
+		return -1;
+	}
+	fseek(fp, 0, SEEK_END);
+
+	len = ftell(fp);
+	fclose(fp);
+
+	printf("Total size of file.txt = %d bytes\n", len);
+
+	return 0;
+}
+
+
+
+
+
