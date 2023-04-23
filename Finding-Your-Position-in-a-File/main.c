@@ -1,8 +1,8 @@
 /*
     Author: Matt Johnson
     Subject: file input and output
-    Purpose:
-    Date: 04/21/2023
+    Purpose: execute fseek() function
+    Date: 04/23/2023
 */
 
 #include <stdio.h>
