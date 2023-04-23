@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1682249802 source:/home/snarkydata/udemy-courses/C-Courses/C-Programming-For-Beginners/Section-14-File-Input-and-Output/Finding-Your-Position-in-a-File-4/main.c
+	<stdio.h>
+	<stdlib.h>
+
