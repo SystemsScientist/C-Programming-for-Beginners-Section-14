@@ -2,7 +2,7 @@
 Section 14: Finding Your Position in a File
 -----------------------------------------------------------------------------
 
-File POsitioning
+File Positioning
 
 	- for many applications, you need to be able to access
 	  data in a file other than sequential order
@@ -124,7 +124,7 @@ int main(void) {
 
 	fp = fopen("test_file.txt", "w+");
 	fgetpos(fp, &position);
-	fputs(Hello, World!", fp);
+	fputs("Hello, World!", fp);
 
 	fclose(fp);
 
