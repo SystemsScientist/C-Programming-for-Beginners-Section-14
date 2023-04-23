@@ -13,9 +13,9 @@ int main(void) {
     FILE *fp;
 
     fp = fopen("test_file.txt", "w+");
-    fputs("This is Matthew", fp);
+    fputs("This is Matthew\n", fp);
 
-    fseek(fp, 7, SEEK_SET);
+    fseek(fp, 20, SEEK_SET);
     fputs("Hello, how are you?", fp);
 
     fclose(fp);
